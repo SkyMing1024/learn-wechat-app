@@ -1,0 +1,7 @@
+.temp{
+  margin-top: 300rpx;
+  text-align: center;
+  font-size: 150rpx;
+  line-height: 210rpx;
+  opacity: 0.7
+}
