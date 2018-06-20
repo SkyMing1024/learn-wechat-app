@@ -24,7 +24,7 @@ wxml页面上的动态数据都来自对应页面的Page的data；只需要用Mu
 
 
 
-##### 列表渲染
+#### 2.列表渲染
 
 * 在组件上使用 `wx:for` 控制属性绑定一个数组，即可使用数组中各项的数据重复渲染该组件。 默认数组的当前项的下标变量名默认为 `index`，数组当前项的变量名默认为 `item` 
 
@@ -60,7 +60,7 @@ wxml页面上的动态数据都来自对应页面的Page的data；只需要用Mu
     <view wx:for="{{[1,2,3]+' '}} ">
     ```
 
-###### 条件渲染
+#### 3.条件渲染
 
 * wx:if
 
@@ -85,6 +85,43 @@ wxml页面上的动态数据都来自对应页面的Page的data；只需要用Mu
 
     **注意：** `<block/>` 并不是一个组件，它仅仅是一个包装元素，不会在页面中做任何渲染，只接受控制属性。 
 
-* df 
+#### 5.模板
+* 在模板中定义代码，可以在多出调用
+* is属性中可以使用mustache语法
+```javascript 
+<template name="odd">
+  <view> odd </view>
+</template>
+<template name="even">
+  <view> even </view>
+</template>
 
- 
+<block wx:for="{{[1, 2, 3, 4, 5]}}">
+    <template is="{{item % 2 == 0 ? 'even' : 'odd'}}"/>
+</block>
+```
+
+#### 6.事件
+######事件绑定和冒泡 
+事件绑定以key/value的形式
+* key以bind或catch开头,后接事件类型，也可以在bind、catch后加一个冒号，bindtap和bind:tap是一样的
+* value是一个字符串，对应Page中定义的同名函数
+
+* bind、catch区别
+bind事件绑定不会阻止冒泡事件向上冒泡，catch事件绑定可以阻止冒泡事件向上冒泡
+```javascript
+<view id="outer" bindtap="handleTap1">
+  outer view
+  <view id="middle" catchtap="handleTap2">
+    middle view
+    <view id="inner" bindtap="handleTap3">
+      inner view
+    </view>
+  </view>
+</view>
+/*点击 inner view 会先后调用handleTap3和handleTap2(因为tap事件会冒泡到 middle view，而 middle view 阻止了 tap 事件冒泡，不再向父节点传递)，点击 middle view 会触发handleTap2，点击 outer view 会触发handleTap1。*/
+```
+######事件对象
+当组件触发事件时，逻辑层绑定该事件的处理函数会收到一个事件对象。
+该event对象包含多个[属性](https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxml/event.html)。
+#### 7.引用
