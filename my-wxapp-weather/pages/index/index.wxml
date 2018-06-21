@@ -1,5 +1,6 @@
 <view class='weather-wrapper'>
-  <view class="temp">18</view>
-  <view class='weather'>晴天</view>
-   <image class='weather-bg' src="/images/sunny-bg.png"></image> 
+  <view class="temp">{{nowTemp}}°</view>
+  <view class='weather'>{{nowWeather}}</view>
+   <image class='weather-bg' src="{{nowWeatherBackground}}"></image> 
 </view>
+<button bindtap='bindViewTap()'>日志</button>

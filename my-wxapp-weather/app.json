@@ -4,9 +4,10 @@
     "pages/logs/logs"
   ],
   "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#c4efff",
+    "backgroundTextStyle":"dark",
+    "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "立知天气",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle":"black",
+    "enablePullDownRefresh": true
   }
 }
