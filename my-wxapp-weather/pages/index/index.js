@@ -29,6 +29,8 @@ Page({
     nowTemp: 15,
     nowWeather: "多云",
     nowWeatherBackground: '/images/sunny-bg.png',
+    forecast: [],
+
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
@@ -136,7 +138,7 @@ Page({
   getNowWeather: function(callback){
     wx.request({
       url: 'https://test-miniprogram.com/api/weather/now',
-      data: { "city": "南京市" },
+      data: { "city": "beijing" },
       success: resp => {
         let temp = resp.data.result.now.temp;
         let weather = resp.data.result.now.weather;
@@ -150,6 +152,20 @@ Page({
           backgroundColor: weatherColorMap[weather],
 
         })
+        let list = resp.data.result.forecast;
+        let nowHours = new Date().getHours();
+        let forecast = [];
+        for(let i=0; i<24;i+=3){
+          forecast.push({
+            time:(i+nowHours)%24 + '时',
+            iconPath: '/images/' + list[i / 3].weather+'-icon.png',
+            temp:list[i/3].temp,
+          })
+          forecast[0].time='现在'
+          this.setData({
+            forecast: forecast
+          })
+        }
       },
       complete: ()=>{
         callback && callback();
