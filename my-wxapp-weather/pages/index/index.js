@@ -30,6 +30,8 @@ Page({
     nowWeather: "多云",
     nowWeatherBackground: '/images/sunny-bg.png',
     forecast: [],
+    todayDate:'',
+    todayTemp:'',
 
     motto: 'Hello World',
     userInfo: {},
@@ -166,10 +168,23 @@ Page({
             forecast: forecast
           })
         }
+        let date = new Date();
+        let month = date.getMonth()+1;
+        this.setData({
+          todayDate: date.getFullYear() + '-' + month +'-'+ date.getDate() + ' 今天',
+          todayTemp: resp.data.result.today.minTemp + '°' + ' - ' + resp.data.result.today.maxTemp +'°'
+        })
+        
       },
       complete: ()=>{
         callback && callback();
       }
+    })
+  },
+  onTapDayWeather:function(){
+    //跳转至其他页面
+    wx.navigateTo({
+      url: '/pages/list/list',
     })
   }
 })
