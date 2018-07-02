@@ -13,7 +13,9 @@
 .weather-wrapper{
   position: relative;
   /* background-color: moccasin; */
-  padding-top: 174rpx;
+  /* 增加位置信息后，padding-top减小
+  padding-top: 174rpx; */
+  padding-top: 20rpx;
   padding-bottom: 250rpx;
    /* height: 760rpx;  */
    /* width: 750rpx;  */
@@ -98,4 +100,36 @@
   width: 13rpx;
   height: 24rpx;
 }
+
+
+/*height 154rpx
+154=42+10+42+60*/
+.location-wrapper{
+  margin-bottom: 60rpx;
+  font-size: 30rpx;
+  line-height: 42rpx;
+  color: rgba(0, 0, 0, 0.5)
+}
+
+.location{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.location-icon{
+  margin-right: 10rpx;
+  width: 21rpx;
+  height: 30rpx;
+}
+
+.location-text{
+  opacity: 0.5
+}
+
+.location-tips{
+  margin-top:10rpx;
+  text-align: center;
+}
+
 
