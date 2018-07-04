@@ -186,5 +186,13 @@ Page({
     wx.navigateTo({
       url: '/pages/list/list',
     })
+  },
+  //点击获取位置信息
+  onTapLocation:function(){
+    wx.getLocation({
+      success: res =>{
+        console.log(res)
+      }
+    })
   }
 })
